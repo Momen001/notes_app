@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:noteapp/cubits/cubit/notes/notes_cubit.dart';
+import 'package:noteapp/models/note_model.dart';
 import 'package:noteapp/view/edit_page.dart';
 
 class NoteItem extends StatelessWidget {
-  const NoteItem({super.key});
+  const NoteItem({super.key, required this.note});
+
+  final NoteModel note;
 
   @override
   Widget build(BuildContext context) {
@@ -12,14 +17,16 @@ class NoteItem extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) {
-              return editpage();
+              return Editpage(
+                note: note,
+              );
             },
           ),
         );
       },
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.yellow,
+          color: Color(note.color),
           borderRadius: BorderRadius.circular(16),
         ),
         child: Column(
@@ -27,24 +34,27 @@ class NoteItem extends StatelessWidget {
           children: [
             ListTile(
               title: Text(
-                'saaaaaaaaaaaa',
-                style: TextStyle(color: Colors.black, fontSize: 24),
+                note.title,
+                style: const TextStyle(color: Colors.black, fontSize: 24),
               ),
               subtitle: Text(
-                'saaaaaaaaaaaa',
-                style: TextStyle(color: Colors.black),
+                note.subtitle,
+                style: const TextStyle(color: Colors.black),
               ),
               trailing: IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.delete),
+                onPressed: () {
+                  note.delete();
+                  BlocProvider.of<NotesCubit>(context).fetchallnotes();
+                },
+                icon: const Icon(Icons.delete),
                 color: Colors.black,
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(right: 16),
               child: Text(
-                'date',
-                style: TextStyle(color: Colors.black),
+                note.date,
+                style: const TextStyle(color: Colors.black),
               ),
             )
           ],

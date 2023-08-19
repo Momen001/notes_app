@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:noteapp/view/widgets/search_icon.dart';
+import 'package:noteapp/view/widgets/cicon.dart';
 
 class Appbar extends StatelessWidget {
-  const Appbar({super.key, required this.title, required this.icon});
-
+  const Appbar(
+      {super.key, required this.title, required this.icon, this.onPressed});
+  final void Function()? onPressed;
   final String title;
   final IconData icon;
   @override
@@ -13,9 +14,10 @@ class Appbar extends StatelessWidget {
       children: [
         Text(
           title,
-          style: TextStyle(fontSize: 24),
+          style: const TextStyle(fontSize: 24),
         ),
-        Searchicon(
+        Cicon(
+          onPressed: onPressed,
           icon: icon,
         )
       ],
