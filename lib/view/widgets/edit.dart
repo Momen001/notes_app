@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:noteapp/cubits/cubit/notes/notes_cubit.dart';
 import 'package:noteapp/view/widgets/app_bar.dart';
 import 'package:noteapp/view/widgets/edit_colors.dart';
@@ -34,6 +35,14 @@ class _editState extends State<Edit> {
                   widget.note.save();
                   BlocProvider.of<NotesCubit>(context).fetchallnotes();
                   Navigator.pop(context);
+                  Fluttertoast.showToast(
+                      msg: "Modified",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.CENTER,
+                      timeInSecForIosWeb: 1,
+                      backgroundColor: Colors.green,
+                      textColor: Colors.white,
+                      fontSize: 16.0);
                 },
                 title: 'Edit Note',
                 icon: Icons.check),

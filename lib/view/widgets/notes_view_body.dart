@@ -27,10 +27,7 @@ class _NotesViewBodyState extends State<Body> {
           SizedBox(
             height: 16,
           ),
-          Appbar(
-            title: 'Note',
-            icon: Icons.search,
-          ),
+          Appbar(title: 'Note', icon: Icons.add_box),
           Expanded(child: Listview())
         ],
       ),

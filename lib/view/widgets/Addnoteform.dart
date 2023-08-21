@@ -65,7 +65,7 @@ class _AddnoteformState extends State<Addnoteform> {
                     var currentDate = DateTime.now();
 
                     var formattedCurrentDate =
-                        DateFormat('dd-mm-yyyy').format(currentDate);
+                        DateFormat('dd-MM-yyyy').format(currentDate);
                     var notemodel = NoteModel(
                         title: title!,
                         subtitle: subtitle!,

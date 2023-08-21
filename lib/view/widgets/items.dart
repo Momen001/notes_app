@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:noteapp/cubits/cubit/notes/notes_cubit.dart';
 import 'package:noteapp/models/note_model.dart';
 import 'package:noteapp/view/edit_page.dart';
@@ -45,6 +46,14 @@ class NoteItem extends StatelessWidget {
                 onPressed: () {
                   note.delete();
                   BlocProvider.of<NotesCubit>(context).fetchallnotes();
+                  Fluttertoast.showToast(
+                      msg: "NOTE DELETED",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.CENTER,
+                      timeInSecForIosWeb: 1,
+                      backgroundColor: Colors.green,
+                      textColor: Colors.white,
+                      fontSize: 16.0);
                 },
                 icon: const Icon(Icons.delete),
                 color: Colors.black,
