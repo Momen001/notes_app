@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:noteapp/cubits/cubit/add_note_cubit.dart';
 import 'package:noteapp/cubits/cubit/notes/notes_cubit.dart';
@@ -19,6 +20,14 @@ class Addnote extends StatelessWidget {
           if (state is AddNoteSuccess) {
             BlocProvider.of<NotesCubit>(context).fetchallnotes();
             Navigator.pop(context);
+            Fluttertoast.showToast(
+                msg: "NOTE ADDED",
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.CENTER,
+                timeInSecForIosWeb: 1,
+                backgroundColor: Colors.green,
+                textColor: Colors.white,
+                fontSize: 16.0);
           }
         },
         builder: (context, state) {
